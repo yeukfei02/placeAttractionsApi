@@ -4,7 +4,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/yeukfei02/placeAttractionsApi/src/common"
 	"github.com/yeukfei02/placeAttractionsApi/src/model"
-	"github.com/yeukfei02/placeAttractionsApi/src/services"
+	placeServices "github.com/yeukfei02/placeAttractionsApi/src/services/place"
 )
 
 // CreatePlaceAttractionsRequestBody struct
@@ -35,7 +35,7 @@ func CreatePlaceAttractions(c *fiber.Ctx) error {
 	lng := placeAttractionsRequestBody.Location.Lng
 
 	if len(name) > 0 && rating > 0 && lat != 0 && lng != 0 {
-		services.CreatePlaceAttractions(name, rating, lat, lng)
+		placeServices.CreatePlaceAttractions(name, rating, lat, lng)
 		response = c.Status(201).JSON(fiber.Map{
 			"message": "Create Place Attractions",
 		})
@@ -52,7 +52,7 @@ func CreatePlaceAttractions(c *fiber.Ctx) error {
 func GetPlaceAttractions(c *fiber.Ctx) error {
 	var response error
 
-	placeAttractionsList := services.GetPlaceAttractions()
+	placeAttractionsList := placeServices.GetPlaceAttractions()
 
 	if len(placeAttractionsList) > 0 {
 		response = c.Status(200).JSON(fiber.Map{
@@ -76,7 +76,7 @@ func GetPlaceAttractionsByID(c *fiber.Ctx) error {
 
 	id := c.Params("id")
 	if len(id) > 0 {
-		placeAttractions := services.GetPlaceAttractionsByID(id)
+		placeAttractions := placeServices.GetPlaceAttractionsByID(id)
 		if placeAttractions != nil {
 			response = c.Status(200).JSON(fiber.Map{
 				"message":         "Get Place Attractions By Id",
@@ -104,7 +104,7 @@ func UpdatePlaceAttractionsByID(c *fiber.Ctx) error {
 		lat := placeAttractionsRequestBody.Location.Lat
 		lng := placeAttractionsRequestBody.Location.Lng
 
-		services.UpdatePlaceAttractionsByID(id, name, rating, lat, lng)
+		placeServices.UpdatePlaceAttractionsByID(id, name, rating, lat, lng)
 		response = c.Status(200).JSON(fiber.Map{
 			"message": "Update Place Attractions By Id",
 		})
@@ -119,7 +119,7 @@ func DeletePlaceAttractionsByID(c *fiber.Ctx) error {
 
 	id := c.Params("id")
 	if len(id) > 0 {
-		services.DeletePlaceAttractionsByID(id)
+		placeServices.DeletePlaceAttractionsByID(id)
 		response = c.Status(200).JSON(fiber.Map{
 			"message": "Delete Place Attractions By Id",
 		})

@@ -1,4 +1,4 @@
-package services
+package place
 
 import (
 	"github.com/kamva/mgm/v3"
