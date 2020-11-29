@@ -5,7 +5,6 @@ placeAttractionsApi
 ## Requirement:
 
 - install go
-- install gin (https://github.com/codegangsta/gin)
 
 ## Testing and run:
 
