@@ -2,6 +2,8 @@
 
 placeAttractionsApi
 
+documentation: https://documenter.getpostman.com/view/3827865/TVmJheUN
+
 ## Requirement:
 
 - install go
