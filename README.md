@@ -2,15 +2,15 @@
 
 placeAttractionsApi
 
-documentation: https://documenter.getpostman.com/view/3827865/TVmJheUN
+documentation: <https://documenter.getpostman.com/view/3827865/TVmJheUN>
 
-## Requirement:
+## Requirement
 
 - install go
 
-## Testing and run:
+## Testing and run
 
-```
+```zsh
 // install deps
 $ go mod tidy
 
@@ -30,9 +30,9 @@ $ go test -v
 $ go fmt
 ```
 
-## Docker:
+## Docker
 
-```
+```zsh
 // build images and start container in one line
 docker-compose up -d --build
 
