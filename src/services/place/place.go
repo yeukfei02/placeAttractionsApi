@@ -3,16 +3,16 @@ package place
 import (
 	"github.com/kamva/mgm/v3"
 	"github.com/yeukfei02/placeAttractionsApi/src/common"
-	"github.com/yeukfei02/placeAttractionsApi/src/model"
+	placeAttractionsModel "github.com/yeukfei02/placeAttractionsApi/src/model/placeAttractions"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
 // CreatePlaceAttractions func
 func CreatePlaceAttractions(name string, rating float64, lat float64, lng float64) {
-	placeAttractions := &model.PlaceAttractions{
+	placeAttractions := &placeAttractionsModel.PlaceAttractions{
 		Name:   name,
 		Rating: rating,
-		Location: model.Location{
+		Location: placeAttractionsModel.Location{
 			Lat: lat,
 			Lng: lng,
 		},
@@ -23,18 +23,18 @@ func CreatePlaceAttractions(name string, rating float64, lat float64, lng float6
 }
 
 // GetPlaceAttractions func
-func GetPlaceAttractions() []model.PlaceAttractions {
-	result := []model.PlaceAttractions{}
+func GetPlaceAttractions() []placeAttractionsModel.PlaceAttractions {
+	result := []placeAttractionsModel.PlaceAttractions{}
 
-	err := mgm.Coll(&model.PlaceAttractions{}).SimpleFind(&result, bson.M{})
+	err := mgm.Coll(&placeAttractionsModel.PlaceAttractions{}).SimpleFind(&result, bson.M{})
 	common.CheckErr(err)
 
 	return result
 }
 
 // GetPlaceAttractionsByID func
-func GetPlaceAttractionsByID(id string) *model.PlaceAttractions {
-	placeAttractions := &model.PlaceAttractions{}
+func GetPlaceAttractionsByID(id string) *placeAttractionsModel.PlaceAttractions {
+	placeAttractions := &placeAttractionsModel.PlaceAttractions{}
 
 	err := mgm.Coll(placeAttractions).FindByID(id, placeAttractions)
 	common.CheckErr(err)
@@ -44,7 +44,7 @@ func GetPlaceAttractionsByID(id string) *model.PlaceAttractions {
 
 // UpdatePlaceAttractionsByID func
 func UpdatePlaceAttractionsByID(id string, name string, rating float64, lat float64, lng float64) {
-	placeAttractions := &model.PlaceAttractions{}
+	placeAttractions := &placeAttractionsModel.PlaceAttractions{}
 
 	err := mgm.Coll(placeAttractions).FindByID(id, placeAttractions)
 	common.CheckErr(err)
@@ -60,7 +60,7 @@ func UpdatePlaceAttractionsByID(id string, name string, rating float64, lat floa
 
 // DeletePlaceAttractionsByID func
 func DeletePlaceAttractionsByID(id string) {
-	placeAttractions := &model.PlaceAttractions{}
+	placeAttractions := &placeAttractionsModel.PlaceAttractions{}
 
 	err := mgm.Coll(placeAttractions).FindByID(id, placeAttractions)
 	common.CheckErr(err)

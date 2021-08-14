@@ -1,4 +1,4 @@
-package model
+package placeAttractions
 
 import "github.com/kamva/mgm/v3"
 
