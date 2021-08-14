@@ -3,7 +3,7 @@ package place
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/yeukfei02/placeAttractionsApi/src/common"
-	"github.com/yeukfei02/placeAttractionsApi/src/model"
+	placeAttractionsModel "github.com/yeukfei02/placeAttractionsApi/src/model/placeAttractions"
 	placeServices "github.com/yeukfei02/placeAttractionsApi/src/services/place"
 )
 
@@ -60,7 +60,7 @@ func GetPlaceAttractions(c *fiber.Ctx) error {
 			"placeAttractions": placeAttractionsList,
 		})
 	} else {
-		placeAttractionsList := []model.PlaceAttractions{}
+		placeAttractionsList := []placeAttractionsModel.PlaceAttractions{}
 		response = c.Status(200).JSON(fiber.Map{
 			"message":          "Get Place Attractions",
 			"placeAttractions": placeAttractionsList,
