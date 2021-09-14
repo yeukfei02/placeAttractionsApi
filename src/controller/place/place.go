@@ -2,7 +2,7 @@ package place
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/yeukfei02/placeAttractionsApi/src/common"
+	"github.com/yeukfei02/placeAttractionsApi/src/helpers"
 	placeAttractionsModel "github.com/yeukfei02/placeAttractionsApi/src/model/placeAttractions"
 	placeServices "github.com/yeukfei02/placeAttractionsApi/src/services/place"
 )
@@ -27,7 +27,7 @@ func CreatePlaceAttractions(c *fiber.Ctx) error {
 	placeAttractionsRequestBody := new(CreatePlaceAttractionsRequestBody)
 
 	err := c.BodyParser(placeAttractionsRequestBody)
-	common.CheckErr(err)
+	helpers.CheckErr(err)
 
 	name := placeAttractionsRequestBody.Name
 	rating := placeAttractionsRequestBody.Rating
@@ -97,7 +97,7 @@ func UpdatePlaceAttractionsByID(c *fiber.Ctx) error {
 		placeAttractionsRequestBody := new(CreatePlaceAttractionsRequestBody)
 
 		err := c.BodyParser(placeAttractionsRequestBody)
-		common.CheckErr(err)
+		helpers.CheckErr(err)
 
 		name := placeAttractionsRequestBody.Name
 		rating := placeAttractionsRequestBody.Rating

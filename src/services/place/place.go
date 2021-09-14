@@ -2,7 +2,7 @@ package place
 
 import (
 	"github.com/kamva/mgm/v3"
-	"github.com/yeukfei02/placeAttractionsApi/src/common"
+	"github.com/yeukfei02/placeAttractionsApi/src/helpers"
 	placeAttractionsModel "github.com/yeukfei02/placeAttractionsApi/src/model/placeAttractions"
 	"go.mongodb.org/mongo-driver/bson"
 )
@@ -19,7 +19,7 @@ func CreatePlaceAttractions(name string, rating float64, lat float64, lng float6
 	}
 
 	err := mgm.Coll(placeAttractions).Create(placeAttractions)
-	common.CheckErr(err)
+	helpers.CheckErr(err)
 }
 
 // GetPlaceAttractions func
@@ -27,7 +27,7 @@ func GetPlaceAttractions() []placeAttractionsModel.PlaceAttractions {
 	result := []placeAttractionsModel.PlaceAttractions{}
 
 	err := mgm.Coll(&placeAttractionsModel.PlaceAttractions{}).SimpleFind(&result, bson.M{})
-	common.CheckErr(err)
+	helpers.CheckErr(err)
 
 	return result
 }
@@ -37,7 +37,7 @@ func GetPlaceAttractionsByID(id string) *placeAttractionsModel.PlaceAttractions 
 	placeAttractions := &placeAttractionsModel.PlaceAttractions{}
 
 	err := mgm.Coll(placeAttractions).FindByID(id, placeAttractions)
-	common.CheckErr(err)
+	helpers.CheckErr(err)
 
 	return placeAttractions
 }
@@ -47,7 +47,7 @@ func UpdatePlaceAttractionsByID(id string, name string, rating float64, lat floa
 	placeAttractions := &placeAttractionsModel.PlaceAttractions{}
 
 	err := mgm.Coll(placeAttractions).FindByID(id, placeAttractions)
-	common.CheckErr(err)
+	helpers.CheckErr(err)
 
 	placeAttractions.Name = name
 	placeAttractions.Rating = rating
@@ -55,7 +55,7 @@ func UpdatePlaceAttractionsByID(id string, name string, rating float64, lat floa
 	placeAttractions.Location.Lng = lng
 
 	updateErr := mgm.Coll(placeAttractions).Update(placeAttractions)
-	common.CheckErr(updateErr)
+	helpers.CheckErr(updateErr)
 }
 
 // DeletePlaceAttractionsByID func
@@ -63,8 +63,8 @@ func DeletePlaceAttractionsByID(id string) {
 	placeAttractions := &placeAttractionsModel.PlaceAttractions{}
 
 	err := mgm.Coll(placeAttractions).FindByID(id, placeAttractions)
-	common.CheckErr(err)
+	helpers.CheckErr(err)
 
 	deleteErr := mgm.Coll(placeAttractions).Delete(placeAttractions)
-	common.CheckErr(deleteErr)
+	helpers.CheckErr(deleteErr)
 }

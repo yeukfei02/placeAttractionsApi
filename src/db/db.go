@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/kamva/mgm/v3"
-	"github.com/yeukfei02/placeAttractionsApi/src/common"
+	"github.com/yeukfei02/placeAttractionsApi/src/helpers"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
@@ -25,5 +25,5 @@ func ConnectDB() {
 	dbName := "place-attractions"
 
 	err := mgm.SetDefaultConfig(nil, dbName, options.Client().ApplyURI(connectionStr))
-	common.CheckErr(err)
+	helpers.CheckErr(err)
 }
